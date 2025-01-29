@@ -19,19 +19,21 @@ const Existing = ({
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
             <Input
-              type="checkbox"
+              type="radio"
               id="existingCustomerYes"
-              {...register("existingCustomerYes")}
+              value="yes"
+              {...register("existingCustomer", { required: "Please select an option" })}
             />
-            <Label htmlFor="existingCustomerYes" className="ml-2 bg-green-100 p-2 rounded-md">
+            <Label htmlFor="existingCustomerYes">
               Yes
             </Label>
           </div>
           <div className="flex items-center">
             <Input
-              type="checkbox"
+              type="radio"
               id="existingCustomerNo"
-              {...register("existingCustomerNo")}
+              value="no"
+              {...register("existingCustomer", { required: "Please select an option" })}
             />
             <Label htmlFor="existingCustomerNo" className="ml-2">
               No
