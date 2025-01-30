@@ -2,6 +2,8 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import PropTypes from "prop-types";
+
 
 const Facility = ({
   register,
@@ -98,6 +100,7 @@ const Facility = ({
           <Input
             id="purpose"
             as="textarea"
+            className="h-40 w-full resize-none border border-gray-300 rounded-md p-2" 
             {...register("purpose", { required: "Purpose is required" })}
           />
           {errors.purpose && (
@@ -107,7 +110,7 @@ const Facility = ({
       </div>
 
       {/* Next Button */}
-      {!stepper[4].state && (
+      {!stepper[5].state && (
         <div className="form-section-content-container-single">
           <Button
             type="submit"
@@ -119,6 +122,22 @@ const Facility = ({
       )}
     </div>
   );
+};
+
+Facility.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    facility_type: PropTypes.object,
+    tenure: PropTypes.object,
+    proposal_limit: PropTypes.object,
+    base_rate: PropTypes.object,
+    ir_premium: PropTypes.object,
+    service_fees: PropTypes.object,
+    purpose: PropTypes.object,
+  }).isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleStepper: PropTypes.func.isRequired,
+  stepper: PropTypes.array.isRequired,
 };
 
 export default Facility;

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -9,12 +9,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import PropTypes from "prop-types";
+
 
 const MoreAbout = ({
   register,
   errors,
   isValid,
   handleStepper,
+  handleSelectChange,
   stepper,
 }) => {
   return (
@@ -274,6 +277,32 @@ const MoreAbout = ({
       )}
     </div>
   );
+};
+
+MoreAbout.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    permanent_province: PropTypes.object,
+    permanent_district: PropTypes.object,
+    permanent_municipality: PropTypes.object,
+    permanent_ward_number: PropTypes.object,
+    permanent_number_of_dependents: PropTypes.object,
+    permanent_age_range: PropTypes.object,
+    permanent_education_level: PropTypes.object,
+    permanent_ownership: PropTypes.object,
+    current_province: PropTypes.object,
+    current_district: PropTypes.object,
+    current_municipality: PropTypes.object,
+    current_ward_number: PropTypes.object,
+    current_number_of_dependents: PropTypes.object,
+    current_age_range: PropTypes.object,
+    current_education_level: PropTypes.object,
+    current_ownership: PropTypes.object,
+  }).isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
+  handleStepper: PropTypes.func.isRequired,
+  stepper: PropTypes.array.isRequired,
 };
 
 export default MoreAbout;

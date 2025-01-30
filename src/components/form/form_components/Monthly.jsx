@@ -2,6 +2,8 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import PropTypes from "prop-types";
+
 
 const Monthly = ({
   register,
@@ -159,6 +161,25 @@ const Monthly = ({
       )}
     </div>
   );
+};
+
+Monthly.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    salary_income: PropTypes.object,
+    business_income: PropTypes.object,
+    retail_income: PropTypes.object,
+    total_income: PropTypes.object,
+    household_expenses: PropTypes.object,
+    retail_expenses: PropTypes.object,
+    other_bank_emi: PropTypes.object,
+    tax_miscellaneous_expenses: PropTypes.object,
+    total_expenses: PropTypes.object,
+    disposable_income: PropTypes.object,
+  }).isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleStepper: PropTypes.func.isRequired,
+  stepper: PropTypes.array.isRequired,
 };
 
 export default Monthly;

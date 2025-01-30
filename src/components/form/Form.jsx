@@ -12,6 +12,7 @@ import Monthly from "./form_components/Monthly";
 import Facility from "./form_components/Facility";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Security from "./form_components/Security";
 
 const Form = () => {
   const {
@@ -35,6 +36,7 @@ const Form = () => {
     { state: false, value: "More About You", icon: Building },
     { state: false, value: "Monthly Income", icon: Eye },
     { state: false, value: "Facility Details", icon: Building },
+    { state: false, value: "Security", icon: Building },
   ]);
 
   const handleStepper = (index) => {
@@ -123,7 +125,19 @@ const Form = () => {
               />
             </div>
           )}
-          {stepper[4].state && (
+          {stepper[5].state && (
+            <div data-aos="fade-up">
+              <Security
+                register={register}
+                errors={errors}
+                isValid={isValid}
+                handleSelectChange={handleSelectChange}
+                stepper={stepper}
+                handleStepper={handleStepper}
+              />
+            </div>
+          )}
+          {stepper[5].state && (
             <Button type="submit" className="btn-primary w-full" data-aos="fade-up">
               Submit Application
             </Button>

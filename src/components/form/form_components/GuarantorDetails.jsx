@@ -9,6 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import PropTypes from "prop-types";
+
+
 
 const GuarantorDetails = ({
   register,
@@ -136,6 +139,22 @@ const GuarantorDetails = ({
       )}
     </div>
   );
+};
+
+GuarantorDetails.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    guarantor_name: PropTypes.object,
+    guarantor_lastName: PropTypes.object,
+    guarantor_primary_phone: PropTypes.object,
+    guarantor_email: PropTypes.object,
+    guarantor_secondary_phone: PropTypes.object,
+    guarantor_relation: PropTypes.object,
+  }).isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
+  handleStepper: PropTypes.func.isRequired,
+  stepper: PropTypes.array.isRequired,
 };
 
 export default GuarantorDetails;

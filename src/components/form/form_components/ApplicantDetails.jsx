@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import PropTypes from "prop-types";
 
 const ApplicantDetails = ({
   register,
@@ -26,7 +27,7 @@ const ApplicantDetails = ({
           <Label htmlFor="firstName">First Name</Label>
           <Input
             id="firstName"
-            {...register("firstName", { required: "First Name is required" })}
+            {...register("custom_customer_name", { required: "First Name is required" })}
           />
           {errors.firstName && (
             <p className="text-red-600 text-sm">{errors.firstName.message}</p>
@@ -48,7 +49,7 @@ const ApplicantDetails = ({
           <Label htmlFor="idNumber">ID Number</Label>
           <Input
             id="idNumber"
-            {...register("idNumber", { required: "ID Number is required" })}
+            {...register("custom_account_number", { required: "ID Number is required" })}
           />
           {errors.idNumber && (
             <p className="text-red-600 text-sm">{errors.idNumber.message}</p>
@@ -72,17 +73,17 @@ const ApplicantDetails = ({
             <Input
               type="number"
               placeholder="DD"
-              {...register("issuedDate.day", { required: "Day is required" })}
+              {...register("date_of_birth.day", { required: "Day is required" })}
             />
             <Input
               type="number"
               placeholder="MM"
-              {...register("issuedDate.month", { required: "Month is required" })}
+              {...register("date_of_birth.month", { required: "Month is required" })}
             />
             <Input
               type="number"
               placeholder="YYYY"
-              {...register("issuedDate.year", { required: "Year is required" })}
+              {...register("date_of_birth.year", { required: "Year is required" })}
             />
           </div>
           {errors.issuedDate && (
@@ -105,7 +106,7 @@ const ApplicantDetails = ({
           <Label htmlFor="fathersName">Father's Name</Label>
           <Input
             id="fathersName"
-            {...register("fathersName", { required: "Father's Name is required" })}
+            {...register("fathers_name", { required: "Father's Name is required" })}
           />
           {errors.fathersName && (
             <p className="text-red-600 text-sm">{errors.fathersName.message}</p>
@@ -116,7 +117,7 @@ const ApplicantDetails = ({
           <Label htmlFor="grandfathersName">Grand Father's Name</Label>
           <Input
             id="grandfathersName"
-            {...register("grandfathersName", { required: "Grand Father's Name is required" })}
+            {...register("grandfathers_name", { required: "Grand Father's Name is required" })}
           />
           {errors.grandfathersName && (
             <p className="text-red-600 text-sm">{errors.grandfathersName.message}</p>
@@ -127,7 +128,7 @@ const ApplicantDetails = ({
           <Label htmlFor="mothersName">Mother's Name</Label>
           <Input
             id="mothersName"
-            {...register("mothersName", { required: "Mother's Name is required" })}
+            {...register("mothers_name", { required: "Mother's Name is required" })}
           />
           {errors.mothersName && (
             <p className="text-red-600 text-sm">{errors.mothersName.message}</p>
@@ -138,51 +139,51 @@ const ApplicantDetails = ({
           <Label htmlFor="spouseName">Spouse Name</Label>
           <Input
             id="spouseName"
-            {...register("spouseName", { required: "Spouse Name is required" })}
+            {...register("spouse_name", { required: "Spouse Name is required" })}
           />
           {errors.spouseName && (
             <p className="text-red-600 text-sm">{errors.spouseName.message}</p>
           )}
         </div>
 
-        {/* Existing Select Fields */}
+        {/* Gender Field */}
         <div className="form-section-content">
-          <Label htmlFor="education">Highest Education</Label>
+          <Label htmlFor="gender">Gender</Label>
           <Select
-            onValueChange={(value) => handleSelectChange("education", value)}
+            onValueChange={(value) => handleSelectChange("gender", value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select education level" />
+              <SelectValue placeholder="Select gender" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="high-school">High School</SelectItem>
-              <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-              <SelectItem value="masters">Master's Degree</SelectItem>
-              <SelectItem value="phd">Ph.D.</SelectItem>
+              <SelectItem value="male">Male</SelectItem>
+              <SelectItem value="female">Female</SelectItem>
+              <SelectItem value="other">Other</SelectItem>
             </SelectContent>
           </Select>
-          {errors.education && (
-            <p className="text-red-600 text-sm">{errors.education.message}</p>
+          {errors.gender && (
+            <p className="text-red-600 text-sm">{errors.gender.message}</p>
           )}
         </div>
 
+        {/* Marital Status Field */}
         <div className="form-section-content">
-          <Label htmlFor="experience">Years of Experience</Label>
+          <Label htmlFor="maritalStatus">Marital Status</Label>
           <Select
-            onValueChange={(value) => handleSelectChange("experience", value)}
+            onValueChange={(value) => handleSelectChange("maritalStatus", value)}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select years of experience" />
+              <SelectValue placeholder="Select marital status" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="0-1">0-1 years</SelectItem>
-              <SelectItem value="1-3">1-3 years</SelectItem>
-              <SelectItem value="3-5">3-5 years</SelectItem>
-              <SelectItem value="5+">5+ years</SelectItem>
+              <SelectItem value="single">Single</SelectItem>
+              <SelectItem value="married">Married</SelectItem>
+              <SelectItem value="divorced">Divorced</SelectItem>
+              <SelectItem value="widowed">Widowed</SelectItem>
             </SelectContent>
           </Select>
-          {errors.experience && (
-            <p className="text-red-600 text-sm">{errors.experience.message}</p>
+          {errors.maritalStatus && (
+            <p className="text-red-600 text-sm">{errors.maritalStatus.message}</p>
           )}
         </div>
       </div>
@@ -198,6 +199,28 @@ const ApplicantDetails = ({
       )}
     </div>
   );
+};
+
+ApplicantDetails.propTypes = {
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    firstName: PropTypes.object,
+    lastName: PropTypes.object,
+    idNumber: PropTypes.object,
+    issuingDistrict: PropTypes.object,
+    issuedDate: PropTypes.object,
+    panNumber: PropTypes.object,
+    fathersName: PropTypes.object,
+    grandfathersName: PropTypes.object,
+    mothersName: PropTypes.object,
+    spouseName: PropTypes.object,
+    gender: PropTypes.object,
+    maritalStatus: PropTypes.object,
+  }).isRequired,
+  isValid: PropTypes.bool.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
+  stepper: PropTypes.array.isRequired,
+  handleStepper: PropTypes.func.isRequired,
 };
 
 export default ApplicantDetails;
